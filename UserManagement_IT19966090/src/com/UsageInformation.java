@@ -72,6 +72,68 @@ public class UsageInformation {
 				return output; 
 		} 
 	
+	//read user usage information
+	public String readUsageInformation() 
+	{ 
+		String output = ""; 
+		try
+		{ 
+			Connection con = connect(); 
+	 if (con == null) 
+	 { 
+	 return "Error while connecting to the database for reading."; 
+	 } 
+	 // Prepare the html table to be displayed
+	 output = "<table border=\"1\" class=\"table\"> <tr>"
+			+ "<th>User Name</th> <th>User Address</th>"
+	 		+ "<th>Number of Units</th>"
+	 		+ "<th>Month</th>"
+	 		+ "<th>Update</th>  <th>Remove</th></tr>";
+	   
+	
+	 String query = "select * from userpowerusageinformation"; 
+	 Statement stmt = con.createStatement(); 
+	 ResultSet rs = stmt.executeQuery(query); 
+	 
+	 // iterate through the rows in the result set
+	 while (rs.next()) 
+	 { 
+	 String usageID = Integer.toString(rs.getInt("usageID")); 
+	 String userName = rs.getString("userName"); 
+	 String address = rs.getString("address"); 
+	 String noOfUnit = Integer.toString(rs.getInt("noOfUnit")); 
+	 String month = rs.getString("month"); 
+	  
+	 
+	 
+	 
+	 // Add into the html table
+	 output += "<tr><td><input id='hideUsageInformationIDUpdate' name='hideUsageInformationIDUpdate' type='hidden' value='"+usageID+"'>"+userName+"</td>"; 
+	 output += "<td>" + address + "</td>"; 
+	 output += "<td>" + noOfUnit + "</td>"; 
+	 output += "<td>" + month + "</td>"; 
+	
+	 // buttons
+	 output += "<td><input name='btnUpdate' type='button' value='Update' "
+			 + "class='btnUpdate btn btn-secondary' data-usageid='" + usageID + "'></td>"
+			 + "<td><input name='btnRemove' type='button' value='Remove' "
+			 + "class='btnRemove btn btn-danger' data-usageid='" + usageID + "'></td></tr>"; 
+	 
+	 } 
+	 con.close(); 
+	 // Complete the html table
+	 output += "</table>"; 
+	 } 
+	 
+	catch (Exception e) 
+	 { 
+	 output = "Error while reading the usage informations."; 
+	 System.err.println(e.getMessage()); 
+	 } 
+	return output; 
+	}
+	
+	
 	
 	
 	
