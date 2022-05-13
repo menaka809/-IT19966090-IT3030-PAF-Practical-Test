@@ -37,10 +37,7 @@
 				<div id="alertError" class="alert alert-danger"></div>
 				<br>
 				<div id="divUsageInformationGrid">
-					<%
-					UsageInformation usageObj = new UsageInformation();
-					out.print(usageObj.readUsageInformation());
-					%>
+					
 				</div>
 			</div>
 		</div>
