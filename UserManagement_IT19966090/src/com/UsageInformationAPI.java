@@ -42,6 +42,16 @@ public class UsageInformationAPI extends HttpServlet {
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub
 			
+			String output = usageObj.insertUsageInformation(
+					   request.getParameter("userName"), 
+					   request.getParameter("address"), 
+					   request.getParameter("noOfUnit"), 
+					   request.getParameter("month")
+					  ); 
+				response.getWriter().write(output);
+
+				doGet(request, response);
+			
 		
 		}
 		
