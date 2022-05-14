@@ -103,3 +103,14 @@ function validateUsageForm()
 	return true;
 }
 
+//UPDATE==========================================
+$(document).on("click", ".btnUpdate", function(event)
+		{ 
+		$("#hideUsageInformationIDSave").val($(this).data("usageid")); 
+		 $("#userName").val($(this).closest("tr").find('td:eq(0)').text()); 
+		 $("#address").val($(this).closest("tr").find('td:eq(1)').text()); 
+		 $("#noOfUnit").val($(this).closest("tr").find('td:eq(2)').text()); 
+		 $("#month").val($(this).closest("tr").find('td:eq(3)').text()); 
+		 
+		});
+
