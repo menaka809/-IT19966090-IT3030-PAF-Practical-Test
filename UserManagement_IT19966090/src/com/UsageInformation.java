@@ -176,6 +176,37 @@ public class UsageInformation {
 	
 	
 	
+	public String deleteUsageInformation(String usageID){ 
+		
+		String output = ""; 
+		
+		try{ 
+			Connection con = connect(); 
+			
+			if (con == null){
+				return "Error while connecting to the database for deleting."; 
+				} 
+			// create a prepared statement
+			String query = "delete from userpowerusageinformation where usageID=?"; 
+			PreparedStatement preparedStmt = con.prepareStatement(query); 
+			// binding values
+			preparedStmt.setInt(1, Integer.parseInt(usageID)); 
+			// execute the statement
+			preparedStmt.execute(); 
+			con.close(); 
+			String newUsage = readUsageInformation(); 
+			 output = "{\"status\":\"success\",\"data\":\""+newUsage+"\"}"; 
+
+		} 
+		
+		catch (Exception e){ 
+			output = "{\"status\":\"error\",\"data\":\"Error while deleting the usage information.\"}";
+			System.err.println(e.getMessage()); 
+		} 
+		return output; 
+} 
+	
+	
 	
 	
 	
