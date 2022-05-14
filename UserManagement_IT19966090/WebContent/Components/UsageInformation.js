@@ -73,3 +73,33 @@ $("#hideUsageInformationIDSave").val("");
 $("#formUsageInformation")[0].reset(); 
 }
 
+
+//CLIENT-MODEL================================================================
+function validateUsageForm()
+{
+	// user name
+	if ($("#userName").val().trim() == "")
+	{
+	return "Insert User Name.";
+	}
+	// address
+	if ($("#address").val().trim() == "")
+	{
+	return "Insert User Address.";
+	
+    }
+	// no of unit
+	if ($("#noOfUnit").val().trim() == "")
+	{
+	return "Insert No of Units.";
+	}
+	// month
+	if ($("#month").val().trim() == "")
+	{
+	return "Insert Month.";
+	
+    }
+
+	return true;
+}
+
