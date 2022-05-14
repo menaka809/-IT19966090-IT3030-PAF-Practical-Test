@@ -134,6 +134,47 @@ public class UsageInformation {
 	}
 	
 	
+	//update usage information
+	
+	public String updateUsageInformation(String usageID,String userName, String address, String noOfUnit, String month){ 
+		
+			String output = ""; 
+			
+			try{ 
+					Connection con = connect(); 
+					if (con == null){
+						return "Error while connecting to the database for updating.";
+						} 
+					// create a prepared statement
+					String query = "UPDATE userpowerusageinformation SET userName=?,address=?,noOfUnit=?,month=? WHERE usageID=?"; 
+					PreparedStatement preparedStmt = con.prepareStatement(query); 
+					// binding values
+					preparedStmt.setString(1, userName); 
+					preparedStmt.setString(2, address); 
+					preparedStmt.setInt(3, Integer.parseInt(noOfUnit)); 
+					preparedStmt.setString(4, month); 
+				
+					preparedStmt.setInt(5, Integer.parseInt(usageID)); 
+					// execute the statement
+					preparedStmt.execute(); 
+					con.close(); 
+					String newUsage = readUsageInformation(); 
+					output = "{\"status\":\"success\",\"data\":\""+newUsage+"\"}"; 
+
+			} 
+			
+			catch (Exception e){ 
+				
+				output = "{\"status\":\"error\",\"data\":\"Error while updating the usage information.\"}"; 
+
+				System.err.println(e.getMessage()); 
+				
+			} 
+			
+			return output; 
+	} 
+	
+	
 	
 	
 	
