@@ -15,7 +15,7 @@
 
 		<div class="row">
 			<div class="col-6">
-				<h1>User Management V10.1</h1>
+				<h1>User Management </h1>
 				<form id="formUsageInformation" name="formUsageInformation">
 					User Name: <input id="userName" name="userName"
 						type="text" class="form-control form-control-sm"> <br>
