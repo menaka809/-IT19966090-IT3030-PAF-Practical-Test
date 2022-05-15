@@ -114,3 +114,47 @@ $(document).on("click", ".btnUpdate", function(event)
 		 
 		});
 
+//Delete
+$(document).on("click", ".btnRemove", function(event)
+		{ 
+		 $.ajax( 
+		 { 
+		 url : "UsageInformationAPI", 
+		 type : "DELETE", 
+		 data : "usageID=" + $(this).data("usageid"),
+		 dataType : "text", 
+		 complete : function(response, status) 
+		 { 
+			 onUsageInformationDeleteComplete(response.responseText, status); 
+		 } 
+		 }); 
+		});
+
+
+
+//Create function check usage information correctly Delete or not
+function onUsageInformationDeleteComplete(response, status)
+{ 
+if (status == "success") 
+ { 
+ var resultSet = JSON.parse(response); 
+ if (resultSet.status.trim() == "success") 
+ { 
+ $("#alertSuccess").text("Successfully deleted."); 
+ $("#alertSuccess").show(); 
+ $("#divUsageInformationGrid").html(resultSet.data); 
+ } else if (resultSet.status.trim() == "error") 
+ { 
+ $("#alertError").text(resultSet.data); 
+ $("#alertError").show(); 
+ } 
+ } else if (status == "error") 
+ { 
+ $("#alertError").text("Error while deleting."); 
+ $("#alertError").show(); 
+ } else
+ { 
+ $("#alertError").text("Unknown error while deleting.."); 
+ $("#alertError").show(); 
+ } 
+}
