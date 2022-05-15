@@ -82,6 +82,10 @@ public class UsageInformationAPI extends HttpServlet {
 		protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub
 			
+			Map paras = getParasMap(request); 
+			 String output = usageObj.deleteUsageInformation(paras.get("usageID").toString()); 
+			response.getWriter().write(output);
+			
 		}
 		
 		
